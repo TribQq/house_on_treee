@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 from enum import Enum
 
@@ -12,6 +13,7 @@ from sqlalchemy.orm import relationship
 class Picture:
     ...
 
+
 class Sex(Enum):
     male = 1
     female = 2
@@ -24,12 +26,13 @@ class User:
     """
 
     def __init__(self, name: str,
-                 avatar: Picture,
                  sex: str,
-                 born_date: datetime,
-                 pictures: list[Picture],
-                 description: str,
+                 born_date: datetime = None,
+                 description: str = None,
+                 avatar: Picture = None,
+                 pictures: list[Picture] = None,
                  ):
+        self.id = uuid.uuid4()
         self.name = name
         self.avatar = avatar
         self.sex = sex
@@ -58,8 +61,8 @@ class Chirp:
                  # likes,
                  parent: 'Chirp' = None,
                  citate: 'Chirp' = None,
-
                  ):
+        self.id = uuid.uuid4()
         self.is_draft = is_draft
         self.is_deleted = is_deleted
         self.pictures = pictures
