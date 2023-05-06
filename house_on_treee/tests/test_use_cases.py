@@ -1,10 +1,11 @@
 from datetime import datetime
 
 from house_on_treee.domain.models import User, Chirp
-from house_on_treee.use_cases.use_cases import save_chirp_to_db
+from house_on_treee.repository.db import MockDB
+from house_on_treee.use_cases.use_cases import ChirpHandler
 
 
-def test_save_chirp_to_db():
+def test_create_chirp():
     # mock example
     user_valera = User(name='Valera',
                        avatar=None,
@@ -15,7 +16,42 @@ def test_save_chirp_to_db():
     chirp: Chirp = Chirp(author=user_valera, text='hello', publish_date=datetime.now(),
                          is_draft=False, is_deleted=False, replies=[], pictures=None,
                          parent=None, citate=None)
-    save_chirp_to_db(chirp=chirp)
+    db: MockDB = MockDB()
+    db.save_chirps_to_db(chirps=[chirp])
+    chirp_handler: ChirpHandler = ChirpHandler(db=db)
+    chirp_handler.create_chirp(chirp=chirp)
+    chirp_from_db = chirp_handler.read_chirp(uuid=chirp.id)
+    assert chirp_from_db.id == chirp.id
+
+
+def test_reply_chirp():
+    # mock example
+    user_valera = User(name='Valera',
+                       avatar=None,
+                       sex='male',
+                       born_date=datetime.now(),
+                       pictures=None,
+                       description='desc')
+    parent_chirp: Chirp = Chirp(author=user_valera, text='parent text', publish_date=datetime.now(),
+                         is_draft=False, is_deleted=False, replies=[], pictures=None,
+                         parent=None, citate=None)
+    child_chirp: Chirp = Chirp(author=user_valera, text='child text', publish_date=datetime.now(),
+                               is_draft=False, is_deleted=False, replies=[], pictures=None,
+                               parent=None, citate=None)
+    db: MockDB = MockDB()
+    db.save_chirps_to_db(chirps=[parent_chirp])
+    chirp_handler: ChirpHandler = ChirpHandler(db=db)
+    chirp_handler.reply_chirp(child_chirp=child_chirp, parent_chirp=parent_chirp)
+    chirp_handler.create_chirp(chirp=parent_chirp)
+
+    parent_chirp_db: Chirp = chirp_handler.read_chirp(uuid=parent_chirp.id)
+    child_chirp_from_db: Chirp = chirp_handler.read_chirp(uuid=child_chirp.id)
+
+    assert parent_chirp_db.replies[0].id == child_chirp_from_db.id
+    assert child_chirp_from_db.parent.id == parent_chirp_db.id
+    assert child_chirp_from_db in parent_chirp_db.replies
+
+
     # chirp_from_db = read_chirp_from_db(chirp)
 
 
