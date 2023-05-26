@@ -1,11 +1,12 @@
 import uuid
 from datetime import datetime
 from enum import Enum
+# from typing import List
 
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Date, ForeignKey
-from sqlalchemy.dialects.postgresql import MONEY
-from sqlalchemy.orm import relationship
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy import Column, Integer, String, Date, ForeignKey
+# from sqlalchemy.dialects.postgresql import MONEY
+# from sqlalchemy.orm import relationship
 
 
 # Base = declarative_base()
