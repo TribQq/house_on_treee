@@ -10,6 +10,7 @@ packages = [{include = "house_on_treee"}]
 python = "^3.10"
 pytest = "^7.3.1"
 sqlalchemy = "^2.0.11"
+make = "^0.1.6.post2"
 
 
 [build-system]

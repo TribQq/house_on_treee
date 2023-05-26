@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import pytest
+# import pytest
 from house_on_treee.domain.models import Chirp, User
 
 
