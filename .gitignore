@@ -1,2 +1,4 @@
 poerty_*
 *_env
+*
+*mypy_cache
