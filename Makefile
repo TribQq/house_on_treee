@@ -7,6 +7,8 @@ test:
 	#python -m pytest
 	poetry run pytest .
 
+isort:
+	isort . # менеждит импорт согласно pep8
 
 #validate:
 	#mypy . # hard validation, not need now( typing.List != list LOL)
