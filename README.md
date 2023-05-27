@@ -4,5 +4,7 @@ repository == шлюз для взаимодействия с бд
 
 
 
+[//]: # (uvicorn app:app --host 0.0.0.0 --port 80)
+uvicorn app:app
 
 
