@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI, APIRouter
+from fastapi import APIRouter, FastAPI
 
 from house_on_treee.repository.db import MockDB
 

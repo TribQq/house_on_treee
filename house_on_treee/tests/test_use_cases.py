@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from house_on_treee.domain.models import User, Chirp
+from house_on_treee.domain.models import Chirp, User
 from house_on_treee.repository.db import MockDB
 from house_on_treee.use_cases.use_cases import ChirpHandler
 

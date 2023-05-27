@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from house_on_treee.domain.models import User, Picture, Chirp
+from house_on_treee.domain.models import Chirp, Picture, User
 from house_on_treee.repository.db import AbstractDataBase
 
 

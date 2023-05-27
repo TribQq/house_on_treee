@@ -1,7 +1,7 @@
-import uuid
 import datetime
+import uuid
 
-from pydantic import dataclasses, BaseModel
+from pydantic import BaseModel, dataclasses
 from pydantic.dataclasses import dataclass
 
 from house_on_treee.domain.models import Picture
@@ -25,7 +25,7 @@ class UserPydanticModel:
 # class ChirpPydanticModel(BaseModel):
 @dataclass
 class ChirpPydanticModel:
-    uuid: uuid.UUID
+    # uuid: uuid.UUID
     author: UserPydanticModel
     text: str
     publish_date: datetime.datetime

@@ -1,15 +1,12 @@
-import uvicorn
-from fastapi import FastAPI
-
-from house_on_treee.domain.models import User, Chirp
-from house_on_treee.repository.db import MockDB
+from app import create_app  # , app, chirp_handler
+from house_on_treee.domain.models import Chirp, User
 from house_on_treee.serizalizers.models import ChirpPydanticModel
-from house_on_treee.use_cases.use_cases import ChirpHandler
 
-app = FastAPI()
+# from main import app, chirp_handler
 
-db = MockDB()  # 4 test
-chirp_handler = ChirpHandler(db) # 4 test
+
+
+app, chirp_handler = create_app()
 
 
 @app.post('/create')
@@ -25,9 +22,4 @@ async def create_chirp(chirp_data: ChirpPydanticModel):
 
 
 
-if __name__ == '__main__':
-    # r = get_chirps()
-    # print(r)
-    # uvicorn.run(api_router)
-    uvicorn.run(app)
 
