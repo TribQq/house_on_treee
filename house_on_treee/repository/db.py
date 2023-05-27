@@ -22,5 +22,5 @@ class MockDB(AbstractDataBase):  # класс заглушка, пока нет 
 
     def save_chirps_to_db(self, chirps: list[Chirp]):
         for chirp in chirps:
-            self.chirps[chirp.id] = chirp
+            self.chirps[chirp.uuid] = chirp
 

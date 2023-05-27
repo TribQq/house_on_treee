@@ -20,8 +20,8 @@ def test_create_chirp():
     db.save_chirps_to_db(chirps=[chirp])
     chirp_handler: ChirpHandler = ChirpHandler(db=db)
     chirp_handler.create_chirp(chirp=chirp)
-    chirp_from_db = chirp_handler.read_chirp(uuid=chirp.id)
-    assert chirp_from_db.id == chirp.id
+    chirp_from_db = chirp_handler.read_chirp(uuid=chirp.uuid)
+    assert chirp_from_db.uuid == chirp.uuid
 
 
 def test_reply_chirp():
@@ -44,11 +44,11 @@ def test_reply_chirp():
     chirp_handler.reply_chirp(child_chirp=child_chirp, parent_chirp=parent_chirp)
     chirp_handler.create_chirp(chirp=parent_chirp)
 
-    parent_chirp_db: Chirp = chirp_handler.read_chirp(uuid=parent_chirp.id)
-    child_chirp_from_db: Chirp = chirp_handler.read_chirp(uuid=child_chirp.id)
+    parent_chirp_db: Chirp = chirp_handler.read_chirp(uuid=parent_chirp.uuid)
+    child_chirp_from_db: Chirp = chirp_handler.read_chirp(uuid=child_chirp.uuid)
 
-    assert parent_chirp_db.replies[0].id == child_chirp_from_db.id
-    assert child_chirp_from_db.parent.id == parent_chirp_db.id
+    assert parent_chirp_db.replies[0].uuid == child_chirp_from_db.uuid
+    assert child_chirp_from_db.parent.uuid == parent_chirp_db.uuid
     assert child_chirp_from_db in parent_chirp_db.replies
 
 

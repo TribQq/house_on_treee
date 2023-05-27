@@ -33,7 +33,7 @@ class User:
                  avatar: Picture = None,
                  pictures: list[Picture] = None,
                  ):
-        self.id = uuid.uuid4()
+        self.uuid = uuid.uuid4()
         self.name = name
         self.avatar = avatar
         self.sex = sex
@@ -41,6 +41,8 @@ class User:
         self.pictures = pictures
         self.description = description
 
+        if self.pictures is None:
+            self.pictures = []
     # name = Column(String)
 
 
@@ -55,15 +57,15 @@ class Chirp:
                  author: User,
                  text: str,
                  publish_date: datetime,
-                 is_draft: bool,
-                 is_deleted: bool,
-                 replies: list['Chirp'],
-                 pictures: list[Picture],
+                 is_draft: bool = None,
+                 is_deleted: bool = None,
+                 replies: list['Chirp'] = None,
+                 pictures: list[Picture] = None,
                  # likes,
                  parent: 'Chirp' = None,
                  citate: 'Chirp' = None,
                  ):
-        self.id = uuid.uuid4()
+        self.uuid = uuid.uuid4()
         self.is_draft = is_draft
         self.is_deleted = is_deleted
         self.pictures = pictures
@@ -74,6 +76,11 @@ class Chirp:
         self.publish_date = publish_date
         self.parent = parent
         self.citate = citate
+
+        if self.replies is None:
+            self.replies = []
+        if self.pictures is None:
+            self.pictures = []
         
         # self.save()
 
