@@ -13,7 +13,8 @@ from enum import Enum
 # Base = declarative_base()
 
 class Picture:
-    ...
+    def __init__(self):
+        self.uuid = uuid.uuid4()
 
 
 class Sex(Enum):

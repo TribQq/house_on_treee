@@ -24,3 +24,14 @@ class MockDB(AbstractDataBase):  # класс заглушка, пока нет 
         for chirp in chirps:
             self.chirps[chirp.uuid] = chirp
 
+
+class SqLiteDB(AbstractDataBase):  # класс заглушка, пока нет бд
+    def __init__(self):
+        ...
+
+    def read_chirp_from_db(self, uuid):
+        ...
+
+    def save_chirps_to_db(self, chirps: list[Chirp]):
+        ...
+
